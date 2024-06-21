@@ -1,51 +1,56 @@
 PlasmidAMRFinder
 ==========
-PlasmidResistID is a comprehensive pipeline designed to identify circular plasmids in bacterial genome assemblies and detect antimicrobial resistance genes. The pipeline supports both long and short reads, making it a versatile tool for plasmid identification and antimicrobial resistance characterization.
-
-Build Status
 
 Pipeline Steps
-Long Reads Analysis:
-Gene prediction with Glimmer3
-Identification of antimicrobial resistance genes using the CARD Database RGI
-Long read alignment against assembly
-Coverage analysis with Mosdepth
-GC Content and GC Skew calculation
-Identification of reads that overlap the gap in the plasmid, indicating circular reads
-Short Reads Analysis:
-Quality control using FastQC
-Trimming of adapters and low-quality sequences using Trimmomatic
-Alignment of short reads to the assembly using BWA
-Plasmid detection using PlasmidFinder
-Coverage analysis with Mosdepth
-GC Content and GC Skew calculation
-Identification of antimicrobial resistance genes using the CARD Database RGI
-Requirements
-Linux or Mac OS
-Java 8.x
-Docker or Singularity container application or Conda package manager
-Installation
-Install Nextflow
+------------
 
-bash
-Code kopieren
+- Long Reads Analysis:
+  - Gene prediction with Glimmer3
+  - Identification of antimicrobial resistance genes using the CARD Database RGI
+  - Long read alignment against assembly
+  - Coverage analysis with Mosdepth
+  - GC Content and GC Skew calculation
+  - Identification of reads that overlap the gap in the plasmid, indicating circular reads
+
+- Short Reads Analysis:
+  - Quality control using FastQC
+  - Trimming of adapters and low-quality sequences using Trimmomatic
+  - Alignment of short reads to the assembly using BWA
+  - Plasmid detection using PlasmidFinder
+  - Coverage analysis with Mosdepth
+  - GC Content and GC Skew calculation
+  - Identification of antimicrobial resistance genes using the CARD Database RGI
+
+Requirements
+------------
+- Linux or Mac OS
+- Java 8.x
+- Docker or Singularity container application or Conda package manager
+
+Installation
+------------
+
+- Install Nextflow
+
+```
 curl -s https://get.nextflow.io | bash
+```
 This creates the Nextflow executable in the current directory.
 
-Download Pipeline
+- Download Pipeline
 You can either get the latest version by cloning this repository:
 
-bash
-Code kopieren
-git clone https://github.com/imgag/plasmIDent
+```
+git clone https://github.com/imgag/PlasmidAMRFinder
+```
 or download one of the releases.
 
-Download Dependencies
-All the dependencies for this pipeline can be downloaded in a docker container.
+- Download Dependencies
+All the dependencies for this pipeline can be downloaded in a [docker (https://docs.docker.com/install/) container.
 
-bash
-Code kopieren
+```
 docker pull caspargross/plasmident
+```
 Alternative dependency installations:
 
 Singularity Container
