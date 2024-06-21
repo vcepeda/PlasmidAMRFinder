@@ -1,5 +1,12 @@
 PlasmidAMRFinder
 ==========
+PlasmidAMRFinder is a comprehensive pipeline designed to identify circular plasmids in bacterial genome assemblies (or complete genomes) and detect antimicrobial resistance genes. The pipeline supports both long and short reads, making it a versatile tool for plasmid identification and antimicrobial resistance characterization.
+
+### Context
+The COVID-19 pandemic underscored the critical need for robust genomic surveillance systems. Inspired by efforts to monitor SARS-CoV-2 variants, we established a central data hub coupled with an automated bioinformatics workflow for the collection, storage, and analysis of bacterial sequencing data from clinical patients. This project is aimed at the early detection and identification of emerging pathogens and outbreaks, and the monitoring of antimicrobial resistance (AMR) in bacterial pathogens. This initiative is part of the Genomic Pathogen Surveillance in Germany (GenSurv and GenSurv+) initiatives.
+
+A central data hub was developed to collect and store short- and long-read bacterial sequencing data. The submission server was designed to efficiently handle data and associated metadata. Key features include customizable configurations, Docker-based deployment, and support for persistent file and database storage. Data collected by the hub is processed through a comprehensive Nextflow pipeline that automates genome assembly, annotation, plasmid identification, and AMR gene identification.
+
 
 Pipeline Steps
 ------------
