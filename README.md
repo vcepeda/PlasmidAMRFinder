@@ -54,7 +54,10 @@ docker pull caspargross/plasmident
 - Alternative dependency installations:
   - Singularity Container (docs/alternative_installation.md#singularity_container)
   - Use conda environment  (no docker)(docs/alternative_installation.md#conda_environment)
-  - Run Application
+
+Run Application
+---------------
+
 The pipeline requires an input file with a sample ID (string) and paths for the assembly file in .fasta format and long reads in .fastq or .fastq.gz. The paths can either be absolute or relative to the launch directory. In normal configuration (with docker), it is not possible to follow symbolic links.
 
 The file must be tab-separated with three columns:
@@ -92,14 +95,17 @@ nextflow run plasmident --input read_locations.tsv --shortreads
 ```
 There are other run profiles for specific environments.
 
-- Optional Run Parameters
+### Optional Run Parameters
 --outDir Path of output folder
 --seqPadding Number of bases added at contig edges to improve long read alignment [Default: 1000]
 --covWindow Moving window size for coverage and GC content calculation [Default: 50]
 --max_cpu Number of threads used per process [Default: 4]
 --max_memory Maximum amount of memory available
 --targetCov Large read files are subsampled to this target coverage to speed up the process [Default: 50]
-- Results
+
+Results
+-------
+
 The pipeline creates the following output folders:
 
   - alignment: Contains the long read alignment (full genome)
