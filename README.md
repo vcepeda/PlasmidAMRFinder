@@ -8,7 +8,7 @@ The COVID-19 pandemic underscored the critical need for robust genomic surveilla
 A central data hub was developed to collect and store short- and long-read bacterial sequencing data. The submission server was designed to efficiently handle data and associated metadata. Key features include customizable configurations, Docker-based deployment, and support for persistent file and database storage. Data collected by the hub is processed through a comprehensive Nextflow pipeline that automates genome assembly, annotation, plasmid identification, and AMR gene identification.
 
 ### Note:
-This pipeline is under active development and currently in early-mid development stages. Contributions and suggestions are welcome to help improve and extend the functionality of PlasmidAMRFinder.
+This pipeline is under active development and currently in early-mid development stages. The pipeline will be extended to automate genome assembly and annotation. Contributions and suggestions are welcome to help improve and extend the functionality of PlasmidAMRFinder.
 
 Pipeline Steps
 ------------
