@@ -111,7 +111,33 @@ def getFiles(tsvFile) {
 
 def helpMessage() {
     // Display help message
-    log.info "  Usage:"
-    log.info "       nextflow run caspargross/plasmident --input <file.csv> [options] "
-    log.info "    --input <file.tsv>"
-    log.info "       TSV
+log.info """  Usage:
+       nextflow run caspargross/plasmident --input <file.csv> [options]
+    --input <file.tsv>
+       TSV file containing paths to files (id | assembly | longread)
+  Parameters:
+    --outDir
+    Output location (Default: current working directory)
+    --maxLength <bases> (Default: 500000)
+    Contigs larger than maxLength will not be considered a putative plasmid
+    --seqPadding <bases> (Default: 2000)
+    Length of recycled sequences at contig edges for long read mapping.
+    --covWindow <bases> (Default: 50)
+    Moving window size for coverage calculation
+    --mappingCov <coverage> (Default: 50)
+    Target coverage for long read sampling
+    --noSubsampling
+    Skips the read subsampling step. Use when read coverage is not uniform.
+    --version
+      Displays pipeline version
+    --help
+      Displays this help
+  Profiles:
+    -profile local
+    Pipeline runs with locally installed conda environments (found in env/ folder)
+    -profile test
+    Runs complete pipeline on small included test dataset
+    -profile localtest
+    Runs test profile with locally installed conda environments
+    """
+
