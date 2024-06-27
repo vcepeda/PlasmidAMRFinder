@@ -112,7 +112,7 @@ def getFiles(tsvFile) {
 def helpMessage() {
     // Display help message
 log.info """  Usage:
-       nextflow run caspargross/plasmident --input <file.csv> [options]
+       nextflow run main.df --input <file.csv> [options]
     --input <file.tsv>
        TSV file containing paths to files (id | assembly | longread)
   Parameters:
