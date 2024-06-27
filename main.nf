@@ -2,16 +2,17 @@
 
 /* 
 ===============================================================================
-                              P L A S M I D E N T  
+                              P L A S M I D A M R F I N D E R  
 ===============================================================================
 Nextflow pipeline for resistance plasmid identification and annotation using 
 Nanopore reads and bacterial genome assemblies
 -------------------------------------------------------------------------------
 @ Author
-Caspar Groß <mail@caspar.one>
+Victoria Cepeda 
+Caspar Groß (adapted from PLASMIDIDENT)
 -------------------------------------------------------------------------------
 @ Documentation
-https://github.com/caspargross/hybridassembly/README.md
+https://github.com/vcepeda/PlasmidAMRFinder/README.md
 ------------------------------------------------------------------------------
 */
 
@@ -514,7 +515,7 @@ def minimalInformationMessage() {
 
 def pipelineMessage() {
   // Display hybridAssembly info  message
-  log.info "PlasmIdent Pipeline ~  version ${workflow.manifest.version} - revision " + this.grabRevision() + (workflow.commitId ? " [${workflow.commitId}]" : "")
+  log.info "PlasmidAMRFinder Pipeline ~  version ${workflow.manifest.version} - revision " + this.grabRevision() + (workflow.commitId ? " [${workflow.commitId}]" : "")
 }
 
 def startMessage() {
@@ -532,12 +533,11 @@ workflow.onComplete {
   log.info "Exit status : " + workflow.exitStatus
 }
 def asciiArt() {
-    log.info "       _                    ___________           _   "
-    log.info "      | |                  |_   _|  _  \\         | |  "
-    log.info " _ __ | | __ _ ___ _ __ ___  | | | | | |___ _ __ | |_ "
-    log.info "| '_ \\| |/ _` / __| '_ ` _ \\ | | | | | / _ \\ '_ \\| __|"
-    log.info "| |_) | | (_| \\__ \\ | | | | || |_| |/ /  __/ | | | |_ "
-    log.info "| .__/|_|\\__,_|___/_| |_| |_\\___/|___/ \\___|_| |_|\\__|"
-    log.info "| |                                                   "
-    log.info "|_|                                                   "
+    log.info "         _                     _     _      _    __  __ ____     __ _           _           "
+    log.info "  _ __ | | __ _ ___ _ __ ___ (_) __| |    / \\  |  \\/  |  _ \\   / _(_)_ __   __| | ___ _ __ "
+    log.info " | '_ \\| |/ _` / __| '_ ` _ \\| |/ _` |   / _ \\ | |\\/| | |_) | | |_| | '_ \\ / _` |/ _ \\ '__|"
+    log.info " | |_) | | (_| \\__ \\ | | | | | | (_| |  / ___ \\| |  | |  _ <  |  _| | | | | (_| |  __/ |   "
+    log.info " | .__/|_|\\__,_|___/_| |_| |_|_|\\__,_| /_/   \\_\\_|  |_|_| \\_\\ |_| |_|_| |_|\\__,_|\\___|_|   "
+    log.info " |_|                                                                                       "
 }
+
