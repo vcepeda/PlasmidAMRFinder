@@ -35,12 +35,11 @@ workflow {
 
     // Setup
     def samples = getFiles(params.input)
-    def env = params.env
     startMessage()
     runParamCheck()
 
     // Execute the processes
-    filter_reads(samples, env)
+    filter_reads(samples)
 }
 
 process filter_reads {
@@ -66,6 +65,7 @@ process filter_reads {
         """
     }
 }
+
 
 def asciiArt() {
     log.info "         _                     _     _      _    __  __ ____     __ _           _           "
