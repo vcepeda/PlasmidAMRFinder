@@ -47,7 +47,7 @@ process filter_reads {
     tag { id }
 
     input:
-    tuple val(id), path(assembly), path(lr), val(env)
+    tuple val(id), path(assembly), path(lr)
 
     output:
     tuple val(id), path(assembly), path('reads_filtered.fastq')
@@ -59,7 +59,7 @@ process filter_reads {
         """
     } else {
         """
-        ${env}
+        ${params.env}
         len=\$(grep -v '>' ${assembly} | wc -c)
         nbases=\$(expr \$len * ${params.mappingCov})
         filtlong -t \$nbases --length_weight 0 ${lr} > reads_filtered.fastq
