@@ -19,10 +19,6 @@ https://github.com/vcepeda/PlasmidAMRFinder/README.md
 nextflow.enable.dsl=2
 
 workflow {
-    plasmidAmrFinder()
-}
-
-workflow plasmidAmrFinder {
     // Check special input parameters
     if (params.help) {
         helpMessage()
@@ -38,20 +34,20 @@ workflow plasmidAmrFinder {
     }
 
     // Setup
-    samples = getFiles(params.input)
+    def samples = getFiles(params.input)
     env = params.env
     startMessage()
     runParamCheck()
 
     // Execute the processes
-    samples | filter_reads | view
+    filter_reads(samples)
 }
 
 process filter_reads {
     tag { id }
 
     input:
-    tuple val(id), path(assembly), path(lr) from samples
+    tuple val(id), path(assembly), path(lr)
 
     output:
     tuple val(id), path(assembly), path('reads_filtered.fastq')
