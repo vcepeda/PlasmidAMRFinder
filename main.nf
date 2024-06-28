@@ -149,7 +149,7 @@ def grabRevision() {
 def minimalInformationMessage() {
     // Minimal information message
     log.info "Command Line  : " + workflow.commandLine
-    log.info "Input file    : " + inputFile
+    log.info "Input file    : " + params.inputFile
     log.info "Profile       : " + workflow.profile
     log.info "Project Dir   : " + workflow.projectDir
     log.info "Launch Dir    : " + workflow.launchDir
