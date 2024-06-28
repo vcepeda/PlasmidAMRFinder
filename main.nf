@@ -35,19 +35,19 @@ workflow {
 
     // Setup
     def samples = getFiles(params.input)
-    env = params.env
+    def env = params.env
     startMessage()
     runParamCheck()
 
     // Execute the processes
-    filter_reads(samples)
+    filter_reads(samples, env)
 }
 
 process filter_reads {
     tag { id }
 
     input:
-    tuple val(id), path(assembly), path(lr)
+    tuple val(id), path(assembly), path(lr), val(env)
 
     output:
     tuple val(id), path(assembly), path('reads_filtered.fastq')
