@@ -58,7 +58,8 @@ process filter_reads {
         """
     } else {
         """
-        ${params.env}
+        #${params.env}
+        source activate PI_env || conda activate PI_env
         len=\$(grep -v '>' ${assembly} | wc -c)
         nbases=\$(expr \$len * ${params.mappingCov})
         filtlong -t \$nbases --length_weight 0 ${lr} > reads_filtered.fastq
