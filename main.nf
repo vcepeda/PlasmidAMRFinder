@@ -149,7 +149,7 @@ def grabRevision() {
 def minimalInformationMessage() {
     // Minimal information message
     log.info "Command Line  : " + workflow.commandLine
-    log.info "Input file    : " + params.inputFile
+    log.info "Input file    : " + params.input
     log.info "Profile       : " + workflow.profile
     log.info "Project Dir   : " + workflow.projectDir
     log.info "Launch Dir    : " + workflow.launchDir
@@ -172,15 +172,4 @@ def pipelineMessage() {
 
 def startMessage() {
     // Display start message
-    this.asciiArt()
-    this.pipelineMessage()
-    this.minimalInformationMessage()
-}
-
-workflow.onComplete {
-    // Display complete message
-    log.info "Completed at: " + workflow.complete
-    log.info "Duration    : " + workflow.duration
-    log.info "Success     : " + workflow.success
-    log.info "Exit status : " + workflow.exitStatus
-}
+    this.as
