@@ -18,8 +18,8 @@ https://github.com/vcepeda/PlasmidAMRFinder/README.md
 
 nextflow.enable.dsl=2
 
-workflow {
-    main()
+workflow plasmidAmrFinder {
+    mainWorkflow()
 }
 
 process filter_reads {
@@ -56,7 +56,7 @@ def asciiArt() {
 }
 
 // Define the main workflow
-workflow main {
+workflow mainWorkflow  {
     // Check special input parameters
     if (params.help) {
         helpMessage()
