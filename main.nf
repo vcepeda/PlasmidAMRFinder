@@ -18,6 +18,10 @@ https://github.com/vcepeda/PlasmidAMRFinder/README.md
 
 nextflow.enable.dsl=2
 
+workflow {
+    plasmidAmrFinder()
+}
+
 workflow plasmidAmrFinder {
     mainWorkflow()
 }
@@ -56,7 +60,7 @@ def asciiArt() {
 }
 
 // Define the main workflow
-workflow mainWorkflow  {
+workflow plasmidAmrFinder   {
     // Check special input parameters
     if (params.help) {
         helpMessage()
@@ -140,4 +144,47 @@ log.info """  Usage:
     -profile localtest
     Runs test profile with locally installed conda environments
     """
+}
+def grabRevision() {
+    // Return the same string executed from github or not
+    return workflow.revision ?: workflow.commitId ?: workflow.scriptId.substring(0,10)
+}
+
+def minimalInformationMessage() {
+    // Minimal information message
+    log.info "Command Line  : " + workflow.commandLine
+    log.info "Input file    : " + inputFile
+    log.info "Profile       : " + workflow.profile
+    log.info "Project Dir   : " + workflow.projectDir
+    log.info "Launch Dir    : " + workflow.launchDir
+    log.info "Work Dir      : " + workflow.workDir
+    log.info "Cont Engine   : " + workflow.containerEngine
+    log.info "Out Dir       : " + params.outDir
+    log.info "Align. Overlp.: " + params.seqPadding
+    log.info "Cov. window   : " + params.covWindow
+    log.info "Max Plasm. Len: " + params.maxLength
+    log.info "Min Plasm. Len: " + params.minLength
+    log.info "Target cov.   : " + params.mappingCov
+    log.info "read sampling : " + !params.noSubsampling
+    log.info "Containers    : " + workflow.container 
+}
+
+def pipelineMessage() {
+    // Display hybridAssembly info message
+    log.info "PlasmidAMRFinder Pipeline ~  version ${workflow.manifest.version} - revision " + this.grabRevision() + (workflow.commitId ? " [${workflow.commitId}]" : "")
+}
+
+def startMessage() {
+    // Display start message
+    this.asciiArt()
+    this.pipelineMessage()
+    this.minimalInformationMessage()
+}
+
+workflow.onComplete {
+    // Display complete message
+    log.info "Completed at: " + workflow.complete
+    log.info "Duration    : " + workflow.duration
+    log.info "Success     : " + workflow.success
+    log.info "Exit status : " + workflow.exitStatus
 }
