@@ -173,12 +173,6 @@ def pipelineMessage() {
 def startMessage() {
     // Display start message
     this.asciiArt()
-   
-
-
-def startMessage() {
-    // Display start message
-    this.asciiArt()
     this.pipelineMessage()
     this.minimalInformationMessage()
 }
