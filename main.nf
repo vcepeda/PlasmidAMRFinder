@@ -23,44 +23,6 @@ workflow {
 }
 
 workflow plasmidAmrFinder {
-    mainWorkflow()
-}
-
-process filter_reads {
-    tag { id }
-
-    input:
-    tuple val(id), path(assembly), path(lr) from samples
-
-    output:
-    tuple val(id), path(assembly), path('reads_filtered.fastq')
-
-    script:
-    if (params.noSubsampling) {
-        """
-        zcat -f ${lr} > reads_filtered.fastq
-        """
-    } else {
-        """
-        ${params.env}
-        len=\$(grep -v '>' ${assembly} | wc -c)
-        nbases=\$(expr \$len * ${params.mappingCov})
-        filtlong -t \$nbases --length_weight 0 ${lr} > reads_filtered.fastq
-        """
-    }
-}
-
-def asciiArt() {
-    log.info "         _                     _     _      _    __  __ ____     __ _           _           "
-    log.info "  _ __ | | __ _ ___ _ __ ___ (_) __| |    / \\  |  \\/  |  _ \\   / _(_)_ __   __| | ___ _ __ "
-    log.info " | '_ \\| |/ _` / __| '_ ` _ \\| |/ _` |   / _ \\ | |\\/| | |_) | | |_| | '_ \\ / _` |/ _ \\ '__|"
-    log.info " | |_) | | (_| \\__ \\ | | | | | | (_| |  / ___ \\| |  | |  _ <  |  _| | | | | (_| |  __/ |   "
-    log.info " | .__/|_|\\__,_|___/_| |_| |_|_|\\__,_| /_/   \\_\\_|  |_|_| \\_\\ |_| |_|_| |_|\\__,_|\\___|_|   "
-    log.info " |_|                                                                                       "
-}
-
-// Define the main workflow
-workflow plasmidAmrFinder   {
     // Check special input parameters
     if (params.help) {
         helpMessage()
@@ -83,6 +45,39 @@ workflow plasmidAmrFinder   {
 
     // Execute the processes
     samples | filter_reads | view
+}
+
+process filter_reads {
+    tag { id }
+
+    input:
+    tuple val(id), path(assembly), path(lr) from samples
+
+    output:
+    tuple val(id), path(assembly), path('reads_filtered.fastq')
+
+    script:
+    if (params.noSubsampling) {
+        """
+        zcat -f ${lr} > reads_filtered.fastq
+        """
+    } else {
+        """
+        ${env}
+        len=\$(grep -v '>' ${assembly} | wc -c)
+        nbases=\$(expr \$len * ${params.mappingCov})
+        filtlong -t \$nbases --length_weight 0 ${lr} > reads_filtered.fastq
+        """
+    }
+}
+
+def asciiArt() {
+    log.info "         _                     _     _      _    __  __ ____     __ _           _           "
+    log.info "  _ __ | | __ _ ___ _ __ ___ (_) __| |    / \\  |  \\/  |  _ \\   / _(_)_ __   __| | ___ _ __ "
+    log.info " | '_ \\| |/ _` / __| '_ ` _ \\| |/ _` |   / _ \\ | |\\/| | |_) | | |_| | '_ \\ / _` |/ _ \\ '__|"
+    log.info " | |_) | | (_| \\__ \\ | | | | | | (_| |  / ___ \\| |  | |  _ <  |  _| | | | | (_| |  __/ |   "
+    log.info " | .__/|_|\\__,_|___/_| |_| |_|_|\\__,_| /_/   \\_\\_|  |_|_| \\_\\ |_| |_|_| |_|\\__,_|\\___|_|   "
+    log.info " |_|                                                                                       "
 }
 
 /*
@@ -115,8 +110,8 @@ def getFiles(tsvFile) {
 
 def helpMessage() {
     // Display help message
-log.info """  Usage:
-       nextflow run main.df --input <file.csv> [options]
+    log.info """  Usage:
+       nextflow run main.nf --input <file.csv> [options]
     --input <file.tsv>
        TSV file containing paths to files (id | assembly | longread)
   Parameters:
@@ -145,6 +140,7 @@ log.info """  Usage:
     Runs test profile with locally installed conda environments
     """
 }
+
 def grabRevision() {
     // Return the same string executed from github or not
     return workflow.revision ?: workflow.commitId ?: workflow.scriptId.substring(0,10)
