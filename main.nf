@@ -140,4 +140,4 @@ log.info """  Usage:
     -profile localtest
     Runs test profile with locally installed conda environments
     """
-
+}
