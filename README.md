@@ -50,7 +50,7 @@ This creates the Nextflow executable in the current directory.
 You can either get the latest version by cloning this repository:
 
 ```
-git clone https://github.com/imgag/PlasmidAMRFinder
+git clone https://github.com/vcepeda/PlasmidAMRFinder
 ```
 or download one of the releases.
 
